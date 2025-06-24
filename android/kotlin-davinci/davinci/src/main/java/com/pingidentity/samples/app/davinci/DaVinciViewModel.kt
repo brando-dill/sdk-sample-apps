@@ -23,18 +23,17 @@ import kotlinx.coroutines.launch
 /**
  * The DaVinci instance.
  */
+//If using this code snippet for you own Android App and not the sample apps,
+//modify details accordingly in the PingOne app.
 val daVinci = DaVinci {
     logger = Logger.STANDARD
 
-    //TODO: Provide here the Server configuration. Add the PingOne server Discovery Endpoint and
-    // the OAuth2.0 client details
-
     // Oidc as module
     module(Oidc) {
-        clientId = "<Client ID>"
-        discoveryEndpoint = "<Discovery Endpoint>"
-        scopes = mutableSetOf("<scope1>", "<scope2>", "...")
-        redirectUri = "<Redirect URI>"
+        clientId = "c98a2eaf-483d-469c-9990-1cc8e1142f02"
+        discoveryEndpoint = "https://auth.pingone.com/4b69e4ad-03bd-4203-89bb-0504221d9a1c/as/.well-known/openid-configuration"
+        scopes = mutableSetOf("email", "phone", "profile", "address", "openid") // Alter redirect URI specific to your app
+        redirectUri = "org.forgerock.demo://oauth2redirect" // Alter the scopes based on your client configuration
     }
 }
 

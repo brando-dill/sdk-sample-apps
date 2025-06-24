@@ -23,13 +23,16 @@ import PingExternal_idp
 ///   - Discovery Endpoint
 ///   - Other optional fields
 public let davinci = DaVinci.createDaVinci { config in
-    //TODO: Provide here the Server configuration. Add the PingOne server Discovery Endpoint and the OAuth2.0 client details
-    config.module(OidcModule.config) { oidcValue in
-        oidcValue.clientId = <#"Client ID"#>
-        oidcValue.scopes = [<#"scope1"#>, <#"scope2"#>, <#"scope3"#>]
-        oidcValue.redirectUri = <#"Redirect URI"#>
-        oidcValue.discoveryEndpoint = <#"Discovery Endpoint"#>
-    }
+
+  //Additional DaVinci Configuration
+    config.timeout = 30
+  //TODO: Provide here the Server configuration. Add the PingOne server Discovery Endpoint and the OAuth2.0 client details
+  config.module(OidcModule.config) { oidcValue in
+    oidcValue.clientId = "c98a2eaf-483d-469c-9990-1cc8e1142f02"
+      oidcValue.scopes = ["email", "address", "openid", "phone", "profile"]
+    oidcValue.redirectUri = "org.forgerock.demo://oauth2redirect"
+    oidcValue.discoveryEndpoint = "https://auth.pingone.com/4b69e4ad-03bd-4203-89bb-0504221d9a1c/as/.well-known/openid-configuration"
+  }
 }
 
 /// A view model that manages the flow and state of the DaVinci orchestration process.

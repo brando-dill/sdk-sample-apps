@@ -87,4 +87,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    //For Native Social Sign In with Google
+    // Google native sign-on SDK for Android
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+// Needed by Android 13 and earlier
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
 }
