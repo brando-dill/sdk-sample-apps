@@ -11,11 +11,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pingidentity.davinci.DaVinci
 import com.pingidentity.davinci.module.Oidc
-import com.pingidentity.exception.ApiException
 import com.pingidentity.logger.Logger
 import com.pingidentity.logger.STANDARD
 import com.pingidentity.orchestrate.ContinueNode
-import com.pingidentity.orchestrate.FailureNode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -66,7 +64,7 @@ class DaVinciViewModel : ViewModel() {
         viewModelScope.launch {
             val next = current.next()
             state.update {
-                it.copy(prev = current, node = next)
+                it.copy(node = next)
             }
             loading.update {
                 false
@@ -84,19 +82,12 @@ class DaVinciViewModel : ViewModel() {
         viewModelScope.launch {
             val next = daVinci.start()
 
-            if (next is FailureNode) {
-                state.update {
-                    it.copy(error = next.cause)
-                }
-            } else {
-                state.update {
-                    it.copy(prev = next, node = next)
-                }
-                loading.update {
-                    false
-                }
+            state.update {
+                it.copy(node = next)
             }
-
+            loading.update {
+                false
+            }
         }
     }
 
@@ -105,7 +96,7 @@ class DaVinciViewModel : ViewModel() {
      */
     fun refresh() {
         state.update {
-            it.copy(prev = it.prev, node = it.node)
+            it.copy(node = it.node)
         }
     }
 }

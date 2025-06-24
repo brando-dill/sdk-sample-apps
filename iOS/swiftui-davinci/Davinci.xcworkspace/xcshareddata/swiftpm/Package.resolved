@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ForgeRock/ping-ios-sdk",
       "state" : {
-        "branch" : "develop",
-        "revision" : "b6231964eec6f29629a148a64457287004e5aeb1"
+        "revision" : "5aab0b63b6fd15b19f77715bb07030aebc5f18e2",
+        "version" : "1.1.0"
       }
     },
     {
