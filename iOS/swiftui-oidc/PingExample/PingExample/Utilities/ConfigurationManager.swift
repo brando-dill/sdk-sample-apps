@@ -106,14 +106,17 @@ class ConfigurationManager: ObservableObject {
         }
         
         //TODO: Provide here the client configuration. Replace the placeholder with the OAuth2.0 client details
+        // If using this code snippet for your own iOS App and not the sample apps,
+        // modify details accordingly in the PingOne app.
         return ConfigurationViewModel(
-            clientId: "[CLIENT ID]",
-            scopes: ["openid", "email", "address", "phone", "profile"], // Alter the scopes based on your clients configuration
-            redirectUri: "[REDIRECT URI]",
-            signOutUri: "[SIGN OUT URI]",
-            discoveryEndpoint: "[DISCOVERY ENDPOINT URL]",
-            environment: "[ENVIRONMENT - EITHER AIC OR PingOne]",
-            cookieName: "[COOKIE NAME - OPTIONAL (Applicable for AIC only)]",
+            clientId: "iOSConnection",
+            scopes: ["email", "phone", "profile", "address", "openid"], // Alter the scopes based on your clients configuration
+            redirectUri: "org.forgerock.demo://oauth2redirect", // Alter redirect URI specific to your app
+            // Leave signOutUri blank unless you want your app to direct to a browser to logout - For OIDC Redirect Login Only
+            signOutUri: "org.forgerock.demo://oauth2redirect",
+            discoveryEndpoint: "https://openam-brando-pm.forgeblocks.com/am/oauth2/alpha/.well-known/openid-configuration",
+            environment: "AIC",
+            // .authSession is set by default, but you can change to the desired browser type.
             browserSeletorType: .authSession
         )
     }

@@ -76,7 +76,12 @@ dependencies {
     //To enable Native Google Sign-In, fall back to browser if Google SDK is not available.
     implementation(libs.googleid)
     implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.facebook.login)
+    // Google native sign-on SDK for Android
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+// Needed by Android 13 and earlier
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
+    implementation("com.facebook.android:facebook-login:18.0.3")
 
     implementation(libs.androidx.datastore.preferences)
 
@@ -95,7 +100,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    
+
     implementation(libs.coil.compose)
     implementation(libs.coil.svg)
 }

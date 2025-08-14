@@ -49,19 +49,32 @@ class EnvViewModel : ViewModel() {
     // Example values for a Ping Advanced Identity Cloud instance
     val PingAdvancedIdentityCloud = FROptionsBuilder.build {
         server {
-            url = "https://openam-forgerock-sdks.forgeblocks.com/am"
+            //The tenant URL in AIC.
+            url = "https://openam-as-de2.forgeblocks.com/am"
+            // Realm Name
             realm = "alpha"
-            cookieName = "29cd7a346b42b42"
-            timeout = 50
+            //The cookie name for the tenant.
+            cookieName = "90cd59456313e64"
         }
         oauth {
-            oauthClientId = "sdkPublicClient"
+            // Client ID for the OAuth2 client.
+            oauthClientId = "BrandoTest"
+            //Redirect URI back to client, update
+            // if you have another URI to add.
             oauthRedirectUri = "org.forgerock.demo://oauth2redirect"
-            oauthScope = "openid profile email address"
-            oauthSignOutRedirectUri = "org.forgerock.demo://oauth2redirect"
+            //By default, all scopes configured in the
+            // client are added, modify as needed.
+            oauthScope = "openid profile email address phone"
         }
         service {
-            authServiceName = "sdkUsernamePasswordJourney"
+            // The values below are the default journeys in
+            // your tenant. Modify as needed.
+            // Uses default Login journey for sample app.
+            // Updated as needed based on the journey you create.
+            authServiceName = "Login"
+            // Uses default Registration journey for sample app.
+            // Updated as needed based on the journey you create.
+            registrationServiceName = "Registration"
         }
     }
 

@@ -15,6 +15,7 @@
     </queries>
 
     <application
+        android:enableOnBackInvokedCallback="true"
         android:allowBackup="false"
         android:icon="@drawable/logo_davinci_color"
         android:label="@string/app_name"
@@ -48,10 +49,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>

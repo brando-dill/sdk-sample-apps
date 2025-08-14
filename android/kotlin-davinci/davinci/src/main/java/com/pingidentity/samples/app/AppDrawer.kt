@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.pingidentity.samples.app.R
 import com.pingidentity.samples.app.Destinations.DAVINCI
 import com.pingidentity.samples.app.Destinations.TOKEN_ROUTE
 import com.pingidentity.samples.app.Destinations.USER_INFO

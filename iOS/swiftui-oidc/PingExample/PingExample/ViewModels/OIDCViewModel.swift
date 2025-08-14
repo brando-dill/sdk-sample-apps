@@ -34,6 +34,9 @@ class OIDCViewModel: ObservableObject {
                 FRUser.browser()?
                     .set(presentingViewController: self.topViewController!)
                     .set(browserType: ConfigurationManager.shared.currentConfigurationViewModel?.getBrowserType() ?? .authSession)
+                    .setCustomParam(
+                        key: "acr_values",
+                        value: "BlogWebAuthnAuthentication")
                     .build().login { (user, error) in
                         if let frUser = user {
                             Task { @MainActor in

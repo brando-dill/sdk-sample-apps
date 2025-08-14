@@ -11,16 +11,20 @@ import * as forgerock from '@forgerock/javascript-sdk';
  */
 
 const FATAL = 'Fatal';
-forgerock.Config.set({
-  clientId: process.env.WEB_OAUTH_CLIENT, // e.g. 'ForgeRockSDKClient'
-  redirectUri: `${window.location.origin}/callback.html`, // e.g. 'https://sdkapp.example.com:8443/callback.html'
-  scope: process.env.SCOPE, // e.g. 'openid profile email address phone'
-  serverConfig: {
-    baseUrl: process.env.SERVER_URL, // e.g. 'https://myorg.forgeblocks.com/am' or 'https://openam.example.com:8443/openam'
-    timeout: 3000, // 90000 or less
-  },
-  realmPath: process.env.REALM_PATH, // e.g. 'alpha' or 'root'
-  tree: process.env.TREE, // e.g. 'sdkAuthenticationTree' or 'Login'
+await forgerock.Config.setAsync({
+ serverConfig: {
+     // The OIDC well known endpoint
+     wellknown: 'https://openam-as-de2.forgeblocks.com/am/oauth2/alpha/.well-known/openid-configuration',
+   },
+   // Client ID for the OAuth2 Client.
+   clientId: 'BrandoTest',
+   // By default, all scopes configured in the client are added,
+   // modify as needed.
+   scope: 'openid profile email address phone',
+   // Redirect URI back to client, be default, uses the
+   // location origin. Update if you have another
+   // redirect URI to add.
+   redirectUri: `${window.location.origin}/callback.html`
 });
 
 // Define custom handlers to render and submit each expected step

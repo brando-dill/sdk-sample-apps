@@ -33,6 +33,25 @@ val daVinci = DaVinci {
         scopes = mutableSetOf("email", "phone", "profile", "address", "openid") // Alter redirect URI specific to your app
         redirectUri = "org.forgerock.demo://oauth2redirect" // Alter the scopes based on your client configuration
     }
+
+
+/*
+    //Test env for DV Bug with Social Login
+    // Oidc as module
+    module(Oidc) {
+        clientId = "5d6ee3bc-6637-4d3e-9723-a1964a435ac5"
+        discoveryEndpoint = "https://aus5-test-one.p14cqa.com/as/.well-known/openid-configuration"
+        scopes = mutableSetOf("email", "phone", "profile", "address", "openid") // Alter redirect URI specific to your app
+        redirectUri = "org.forgerock.demo://oauth2redirect" // Alter the scopes based on your client configuration
+    }
+*/
+   /* module(Oidc) {
+        clientId = "021b83ce-a9b1-4ad4-8c1d-79e576eeab76"
+        discoveryEndpoint = "https://auth.pingone.ca/02fb4743-189a-4bc7-9d6c-a919edfe6447/as/.well-known/openid-configuration"
+        scopes = mutableSetOf("openid", "email", "address", "phone", "profile")
+        redirectUri = "org.forgerock.demo://oauth2redirect"
+        acrValues = "1557008a3c8b6105d5f4e8e053ac7a29"
+    } */
 }
 
 /**
