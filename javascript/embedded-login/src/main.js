@@ -1,4 +1,4 @@
-import * as forgerock from '@forgerock/javascript-sdk';
+import { Config, FRAuth, FRUser, TokenManager, UserManager } from '@forgerock/javascript-sdk';
 
 /*
  * @forgerock/javascript-sdk
@@ -10,21 +10,23 @@ import * as forgerock from '@forgerock/javascript-sdk';
  * of the MIT license. See the LICENSE file for details.
  */
 
+const wellknownUrl = process.env.SERVER_URL.endsWith('/')
+  ? `${process.env.SERVER_URL}oauth2/${process.env.REALM_PATH}/.well-known/openid-configuration`
+  : `${process.env.SERVER_URL}/oauth2/${process.env.REALM_PATH}/.well-known/openid-configuration`;
+
 const FATAL = 'Fatal';
-await forgerock.Config.setAsync({
- serverConfig: {
-     // The OIDC well known endpoint
-     wellknown: 'https://openam-as-de2.forgeblocks.com/am/oauth2/alpha/.well-known/openid-configuration',
-   },
-   // Client ID for the OAuth2 Client.
-   clientId: 'BrandoTest',
-   // By default, all scopes configured in the client are added,
-   // modify as needed.
-   scope: 'openid profile email address phone',
-   // Redirect URI back to client, be default, uses the
-   // location origin. Update if you have another
-   // redirect URI to add.
-   redirectUri: `${window.location.origin}/callback.html`
+/**
+ * CUSTOMERS:
+ * Replace the argument passed into `setAsync` below with your own sample config object from
+ * your PingAIC/PingAM's OAuth configuration.
+ */
+await Config.setAsync({
+  clientId: process.env.WEB_OAUTH_CLIENT, // e.g. 'PingSDKClient'
+  redirectUri: `${window.location.origin}/callback.html`, // e.g. 'https://localhost:8443/callback.html'
+  scope: process.env.SCOPE, // e.g. 'openid profile email'
+  serverConfig: {
+    wellknown: wellknownUrl, // This can be found in your PingAM's OAuth2 configuration
+  },
 });
 
 // Define custom handlers to render and submit each expected step
@@ -91,8 +93,8 @@ const handleStep = async (step) => {
         // eslint-disable-next-line no-unused-vars
         const sessionToken = step.getSessionToken();
         // eslint-disable-next-line no-unused-vars
-        const tokens = await forgerock.TokenManager.getTokens();
-        const user = await forgerock.UserManager.getCurrentUser();
+        const tokens = await TokenManager.getTokens();
+        const user = await UserManager.getCurrentUser();
         return showUser(user);
       }
     }
@@ -122,12 +124,12 @@ const handleFatalError = (err) => {
 
 // Get the next step using the FRAuth API
 const nextStep = (step) => {
-  forgerock.FRAuth.next(step).then(handleStep).catch(handleFatalError);
+  FRAuth.next(step, { tree: process.env.TREE }).then(handleStep).catch(handleFatalError);
 };
 
 const logout = async () => {
   try {
-    await forgerock.FRUser.logout();
+    await FRUser.logout();
     location.reload(true);
   } catch (error) {
     console.error(error);
