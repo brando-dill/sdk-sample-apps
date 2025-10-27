@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.statusLabel?.text = "Welcome to Pebble Bank"
+        self.statusLabel?.text = "Welcome to Ping!"
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tap) // Add gesture recognizer to background view
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -106,7 +106,7 @@ class LoginViewController: UIViewController {
                 self.nextButton.setTitle("Logout", for: .normal)
             }
             else {
-                self.statusLabel?.text = "Welcome to Pebble Bank"
+                self.statusLabel?.text = "Ping SDKs + AIC/PingAM Journeys"
                 self.nextButton.setTitle("Login", for: .normal)
             }
         }

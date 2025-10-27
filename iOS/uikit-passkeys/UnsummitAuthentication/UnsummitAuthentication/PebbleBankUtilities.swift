@@ -15,10 +15,10 @@ class PebbleBankUtilities: NSObject {
     static let mainAuthenticationJourney = "Login"
     static let biometricsRegistrationJourney = "BlogWebAuthnRegistration"
     static let biometricsAuthenticationJourney = "BlogWebAuthnAuthentication"
-    static let amURL = [AM URL]
-    static let cookieName = [COOKIE NAME]
+    static let amURL = "https://idc.petrov.ca/am"
+    static let cookieName = "5421aeddf91aa20"
     static let realm = "alpha"
-    static let oauthClientId = [CLIENT ID]
+    static let oauthClientId = "iosclient"
     static let oauthRedirectURI = "frauth://com.forgerock.ios.frexample"
     static let oauthScopes = "openid profile email address"
     

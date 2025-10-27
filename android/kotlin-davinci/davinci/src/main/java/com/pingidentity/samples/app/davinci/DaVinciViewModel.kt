@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
  */
 //If using this code snippet for you own Android App and not the sample apps,
 //modify details accordingly in the PingOne app.
-val daVinci = DaVinci {
+val daVinci = daVinci {
     logger = Logger.STANDARD
 
     // Oidc as module
